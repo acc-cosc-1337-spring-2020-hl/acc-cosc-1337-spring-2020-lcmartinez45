@@ -6,8 +6,7 @@ TEST_CASE("Verify Test Configuration", "verification") {
 	REQUIRE(true == true);
 }
 
-TEST_CASE("Test square number function")
+TEST_CASE("Test square_number function")
 {
 	REQUIRE(square_number(5) == 25);
-	REQUIRE(square_number(5) == 55);
 }
