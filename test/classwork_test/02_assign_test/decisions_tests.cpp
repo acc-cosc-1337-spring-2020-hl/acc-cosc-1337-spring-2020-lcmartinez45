@@ -12,5 +12,5 @@ TEST_CASE("Tests for gross pay")
 	REQUIRE(gross_pay(10, 15) == 150);
 	REQUIRE(gross_pay(5, 20) == 100);
 	REQUIRE(gross_pay(20, 10) == 200);
-	REQUIRE(gross_pay(50, 10) == 650);
+	REQUIRE(gross_pay(50, 10) == 550);
 }

@@ -3,13 +3,13 @@
 
 double gross_pay(double hours, double hourly_rate)
 {
-	double gross = hours * hourly_rate;
+	double gross = 40 * hourly_rate;
 	double overtime_hours = hours - 40;
 	double overtime_pay = hourly_rate * 1.5 * overtime_hours;
 	
 	if (hours > 40)
 	{
-		gross = gross + overtime_pay;
+		gross += overtime_pay;
 	}
 	else
 	{
