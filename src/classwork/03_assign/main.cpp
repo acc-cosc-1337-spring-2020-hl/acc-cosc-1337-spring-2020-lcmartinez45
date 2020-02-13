@@ -1,7 +1,8 @@
-#write includes statements
+#include "loops.h"
+#include<iostream>
 
 //write using statements for cin and cout
-
+using std::cin; using std::cout;
 
 /*
 Use a do while loop to prompt the user for 
@@ -10,6 +11,17 @@ factorial.  Also, loop continues as long as user wants to.
 */
 int main() 
 {
+	int choice;
 
-	return 0;
+	do
+	{
+		int sum = factorial(5);
+		cout << "Result is: " << sum << "\n";
+
+		return 0;
+
+		cout << "\nContinue? 1 for Yes: ";
+		cin >> choice;
+	} 
+	while (choice == 1);
 }

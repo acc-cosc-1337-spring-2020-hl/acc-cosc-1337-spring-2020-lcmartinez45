@@ -22,7 +22,7 @@ void prompt_user()
 
 		cout << sum_of_squares(num);
 
-		cout << "\nContinue? 1 for Yes, 0 for No: ";
+		cout << "\nContinue? 1 for Yes: ";
 		cin >> choice;
 	}
 	while (choice == 1);
