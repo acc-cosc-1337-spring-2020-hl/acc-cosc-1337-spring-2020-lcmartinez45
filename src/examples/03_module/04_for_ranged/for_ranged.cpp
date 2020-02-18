@@ -35,23 +35,23 @@ e
 s
 t
 */
-void loop_string_w_auto(const string & str)
+void loop_string_w_auto(const string & str) //cant modify
 {
 	for (auto s : str)
 	{
 		cout << s << "\n";
+		s = 'z';
 	}
 }
 
-
-
-void loop_vector_w_index() 
-{
-	vector<int> nums = {9, 10, 99, 5,67 };
-
-	for (int i = 0; i < nums.size(); ++i) 
+void loop_string_w_auto_ref(string &str) {
+	
+	for (auto &s : str)
 	{
-		std::cout << nums[i] << "\n";
+		cout << s << "\n";
+		s = 'z';
 	}
 }
+
+
 
