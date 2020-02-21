@@ -1,3 +1,8 @@
+/*
+Lillian Martinez
+ Homework 3
+ dna.cpp
+*/
 #include "dna.h"
 using std::string; using std::cout;using std::swap;
 /*
@@ -29,8 +34,8 @@ accepts a string parameter and returns a string reversed.
 */
 string get_reverse_string(string dna) {
     string rev = "";
-    // loop through the string DNA in reverse orer and copy the characters in the new string rev
-    for (int i = dna.length()-1; i >= 0; i--) {
+    // loop through the string DNA in reverse order and copy the characters in the new string rev
+    for (int i = dna.size() - 1; i >= 0; i--) {
         rev += dna[i];
     }
     // return the resulting string
@@ -50,7 +55,7 @@ string get_dna_complement(string dna) {
     // first create a reversed string using get_reverse_string function
     string b = get_reverse_string(dna);
     string complement = "";
-    // loop through the string and copy the content in the string complement accordingly
+    // loop through the string and copy the content in the string complement
     for (int i = 0; i < b.length(); i++) {
         // replace A with T
         if (b[i] == 'A') {

@@ -1,3 +1,8 @@
+/*
+Lillian Martinez
+ Homework 3
+ dna.h
+*/
 #include<string>
 #include <iostream>
 using std::string;

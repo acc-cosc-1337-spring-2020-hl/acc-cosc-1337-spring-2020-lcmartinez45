@@ -1,3 +1,8 @@
+/*
+Lillian Martinez
+ Homework 3
+ main.cpp
+*/
 //write include statements
 #include <iostream>
 #include "dna.h"
@@ -29,7 +34,7 @@ int main() {
         // read option
         cout << "Enter option: ";
         cin >> option;
-        // call function accoring to option selected
+        // call function according to option selected
         // if 1 is selected
         if (option == 1) {
             // call get_gc_content and print result
