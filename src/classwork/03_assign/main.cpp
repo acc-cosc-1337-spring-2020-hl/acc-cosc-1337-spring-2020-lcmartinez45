@@ -15,13 +15,17 @@ int main()
 
 	do
 	{
-		int sum = factorial(5);
-		cout << "Result is: " << sum << "\n";
+		int num;
+		cout << "Enter a number: ";
+		cin >> num;
 
-		return 0;
+		int sum = factorial(num);
+		cout << "Result is: " << sum << "\n";
 
 		cout << "\nContinue? 1 for Yes: ";
 		cin >> choice;
 	} 
 	while (choice == 1);
+
+	return 0;
 }
