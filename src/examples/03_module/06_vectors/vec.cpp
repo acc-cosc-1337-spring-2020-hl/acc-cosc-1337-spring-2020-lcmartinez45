@@ -17,7 +17,7 @@ void loop_vector_w_index(vector<int> nums)
 		cout << nums[i] << "\n";
 		nums[i] = 0;
 	}
-}
+
 
 /*
 Write code for function loop_vector_w_index with a vector of int pass by value parameter.
