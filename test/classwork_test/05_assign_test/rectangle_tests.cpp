@@ -8,7 +8,7 @@ TEST_CASE("Verify Test Configuration", "verification") {
 }
 
 TEST_CASE("Test calculate area function") {
-    REQUIRE(calculate_area(4, 5) == 20);
-    REQUIRE(calculate_area(10, 10) == 100);
-    REQUIRE(calculate_area(100, 10) == 1000);
+	Rec r(4, 5);
+    REQUIRE(r.get_area() == 20);
+    
 }
