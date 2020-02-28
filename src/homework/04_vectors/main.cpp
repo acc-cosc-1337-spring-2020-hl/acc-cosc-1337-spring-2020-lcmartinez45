@@ -32,14 +32,13 @@ int main()
             cin>>num;
             result=vector_of_primes(num);
             cout<<"\nVector with values ";
-
             for(i=0;i<result.size();i++)
             {
                 if(i==result.size()-1)
                     cout<<result[i];
                 
                 else
-                    cout<<result[i]<<", ";
+                   cout<<result[i]<<", ";
             }
             cout<<"\n\n";
             break;

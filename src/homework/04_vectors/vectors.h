@@ -21,7 +21,7 @@ that given a number returns true if prime or false if not prime
 bool is_prime(int number);
 
 /*
-Write a a function prototype named vector_of_primes with an integer
+Write a function prototype named vector_of_primes with an integer
 parameter that given a number returns all the prime numbers up to
 the number
 
