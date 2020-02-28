@@ -8,20 +8,11 @@ TEST_CASE("Verify Test Configuration", "verification") {
 }
 
 TEST_CASE("Test get_max_from_vector function") {
-    vector<int> num{ 9, 10, 99, 5, 67 };
-    vector<int> num1{ 1000 };
-    get_max_from_vector(num);
-    REQUIRE(num == num1);
-    
-    vector<int> nums{ 15,12,11,99,88 };
-    vector<int> num2{ 99 };
-    get_max_from_vector(nums);
-    REQUIRE(nums == num2);
-    
-    vector<int> numb{ 9, 10, 99, 5, 67 };
-    vector<int> num3{ 1000 };
-    get_max_from_vector(numb);
-    REQUIRE(numb == num3);
+   REQUIRE(get_max_from_vector(const vector<int> &numbers{3, 8, 1, 99, 1000} == 1000);
+
+    REQUIRE(get_max_from_vector(const vector<int> &numbers{15,12,11,99,88} == 99);
+
+    REQUIRE(get_max_from_vector(const vector<int> &numbers{150,120,11,990,88888} == 88888);
 }
 
 TEST_CASE("Test is prime function") {
