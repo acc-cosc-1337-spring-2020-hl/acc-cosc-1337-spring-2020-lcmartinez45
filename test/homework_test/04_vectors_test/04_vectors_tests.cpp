@@ -32,14 +32,8 @@ TEST_CASE("Test is prime function") {
 }
 
 TEST_CASE("Test vector of primes function") {
-    int int1 = 50;
-    vector_of_primes(int1);
-    vector<int> int2{ 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47 };
-    REQUIRE(int1 == int2);
-    
-    int int3 = 10;
-    vector<int> int4{ 2, 3, 5, 7};
-    vector_of_primes(10);
-    REQUIRE(int3 == int4);
+    REQUIRE(vector_of_primes(50) == vector<int> {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47} );
+
+    REQUIRE(vector_of_primes(10) == vector<int> {2, 3, 5, 7} );
 }
 
