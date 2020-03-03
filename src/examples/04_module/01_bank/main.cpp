@@ -14,6 +14,7 @@ int main()
 		cout << act.get_balance() << "\n";
 	}
 
+	BankAccount account(500);
 	int balance = account.get_balance();
 	cout << "\nBalance: " << balance;
 	try
