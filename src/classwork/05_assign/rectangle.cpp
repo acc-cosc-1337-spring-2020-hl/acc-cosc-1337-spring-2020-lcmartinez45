@@ -12,3 +12,14 @@ void Rec::calculate_area()
 {
 	area = width * height;
 }
+
+void calculate_area(const Rec & b)
+{
+	std::cout << "Area is: " << b.area << "\n";
+}
+
+std::ostream & operator<<(std::ostream & out, const Rec & b)
+{
+	out << "Area is: " << b.area << "\n";
+	return out;
+}

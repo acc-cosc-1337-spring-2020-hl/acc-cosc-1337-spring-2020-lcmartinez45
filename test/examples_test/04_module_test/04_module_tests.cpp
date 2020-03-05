@@ -7,14 +7,19 @@ TEST_CASE("Verify Test Configuration", "verification") {
 }
 
 TEST_CASE("Test BankAccount get_balance") {
+	BankAccount account(150);
 
+	REQUIRE(account.get_balance() == 150);
 }
 
-TEST_CASE("Test BankAccount deposit") {
-	REQUIRE(account.get_balance() == 150);
-	REQUIRE_THROWS_AS(account.deposit(-50).InvalidAmount);
+TEST_CASE("Test BankAccount deposit") 
+{
+	BankAccount account(150);
 
-	REQUIRE(account.get_balance == 150);
+	REQUIRE(account.get_balance() == 150);
+	REQUIRE_THROWS_AS(account.deposit(-50), InvalidAmount);
+
+	REQUIRE(account.get_balance() == 150);
 	account.deposit(50);
 }
 
@@ -56,4 +61,11 @@ TEST_CASE("Test default constructor open account with less than $25")
 {
 	BankAccount account;
 	REQUIRE_THROWS_AS(account.open(24), InvalidAmount);
+}
+
+TEST_CASE("Test BankAccount get rate function")
+{
+	BankAccount account(50);
+
+	REQUIRE(account.get_rate() == .025);
 }

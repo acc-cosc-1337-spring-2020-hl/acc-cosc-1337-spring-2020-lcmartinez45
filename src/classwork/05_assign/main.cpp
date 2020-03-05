@@ -20,10 +20,10 @@ int main()
 	int total = 0;
 	for (auto act : rectangles)
 	{
-		cout << act.get_area() << "\n";
+		cout << act << "\n";
 		total += act.get_area();
 	}
-	cout << total << "\n";
+	cout << "Total is: " << total << "\n";
 
 	return 0;
 }

@@ -2,12 +2,18 @@
 #include<iostream>
 #include<vector>
 
-using std::cout; using std::vector;
+using std::cout; using std::cin; using std::vector;
 
 int main()
 {
+	BankAccount a(50), b(60);
+							//BankAccount c = a + b;
+	display_balance(a);
+	cout << a;
+	cin >> a;
+	display_balance(a);
+
 	vector<BankAccount> accounts{ BankAccount(100), BankAccount(200), BankAccount(300) };
-	BankAccount account(500);
 
 	for (auto act : accounts)
 	{
