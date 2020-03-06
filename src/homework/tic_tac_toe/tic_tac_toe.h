@@ -16,10 +16,10 @@ public:
   string get_player()const { return next_player; }
   
 private:
-    string next_player;
+    string next_player{};
     
   //Class member variable
-  string player;
+    string player{};
    
   //Set next_player. If private variable player X, player is O else player is X
   void set_next_player();
@@ -29,7 +29,7 @@ class Error
 {
 public:
   //Constructor: initialized private variable message with function parameter msg
-  Error(string msg) : message{ msg } {};
+  Error(string msg) : message{ msg } {}
    
   //Returns the message private variable
   string get_message()const { return message; }

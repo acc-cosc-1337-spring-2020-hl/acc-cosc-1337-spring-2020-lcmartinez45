@@ -12,7 +12,7 @@ The program will call the start_game function with argument O or X to indicate f
 int main()
 {
     string a;
-    cout << "Hello welcome to tictactoe! Please enter first player, \"X\" or \"O\"." << "\n";
+    cout << "Hello welcome to tictactoe game! Please enter first player, \"X\" or \"O\"." << "\n";
     cin >> a;
    
     string start_game(a);
@@ -24,7 +24,7 @@ int main()
         int num;
         cout << "Enter a number from 1-9 to place your spot on the board." << "\n";
         cin >> num;
-     
+        
         try
         {
             int mark_board(num);
@@ -37,6 +37,8 @@ int main()
         cin >> choice;
     }
     while(choice == 1);
+    
+    cout << "\nThanks for playing!";
     
     return 0;
 }

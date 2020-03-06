@@ -9,7 +9,7 @@ void TicTacToe::start_game(string first_player)
 {
   if(first_player == "O" || first_player == "X")
   {
-    player = first_player;
+    next_player = first_player;
     
   }else{
       throw Error("Player must be X or O.\n");
@@ -23,25 +23,25 @@ void TicTacToe::start_game(string first_player)
  */
 void TicTacToe::mark_board(int position)
 {
-  if (position < 1 && position > 9)
-  
-    throw Error("\nPosition must be 1 to 9.");
-
-  if (player == "")
-  
+  if (position < 1 || position > 9)
+  {
+    throw Error("\nPosition must be in range 1 to 9.");
+  }
+  if (next_player == "")
+  {
     throw Error("\nMust start game first.");
-  
+  }
   set_next_player();
 }
 
 void TicTacToe::set_next_player()
 {
-  if(player == "X")
-  {
-    next_player = "O";
-  }
-  else
-  {
-    next_player = "X";
-  }
+    if(next_player == "X")
+    {
+        next_player = "O";
+    }
+    else
+    {
+        next_player = "X";
+    }
 }
