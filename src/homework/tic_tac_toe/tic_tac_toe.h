@@ -9,6 +9,7 @@ using std::string;
 class TicTacToe
 {
 public:
+    TicTacToe() = default;
   void start_game(string first_player);
   void mark_board(int position);
    
@@ -32,7 +33,7 @@ public:
   Error(string msg) : message{ msg } {}
    
   //Returns the message private variable
-  string get_message()const { return message; }
+  string get_message() { return message; }
 
 private:
   //Class member variable

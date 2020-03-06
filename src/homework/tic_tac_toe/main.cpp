@@ -11,23 +11,22 @@ The program will call the start_game function with argument O or X to indicate f
  */
 int main()
 {
-    string a;
+    string first_player;
     cout << "Hello welcome to tictactoe game! Please enter first player, \"X\" or \"O\"." << "\n";
-    cin >> a;
-   
-    string start_game(a);
+    cin >> first_player;
+    string start_game(first_player);
     
     int choice;
 
-    do
+   do
     {
-        int num;
+        int position;
         cout << "Enter a number from 1-9 to place your spot on the board." << "\n";
-        cin >> num;
+        cin >> position;
         
         try
         {
-            int mark_board(num);
+            int mark_board(position);
         }
         catch (Error e)
         {
@@ -35,8 +34,7 @@ int main()
         }
         cout << "\nContinue? 1 for Yes: " << "\n";
         cin >> choice;
-    }
-    while(choice == 1);
+    } while (choice == 1);
     
     cout << "\nThanks for playing!";
     
