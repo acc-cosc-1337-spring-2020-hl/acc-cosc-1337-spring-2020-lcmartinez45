@@ -16,8 +16,8 @@ public:
   string get_player()const { return next_player; }
   
 private:
-  string next_player;
-   
+    string next_player;
+    
   //Class member variable
   string player;
    
