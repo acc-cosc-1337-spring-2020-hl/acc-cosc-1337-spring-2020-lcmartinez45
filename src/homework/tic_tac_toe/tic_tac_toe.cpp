@@ -1,3 +1,4 @@
+#include "tic_tac_toe.h"
 //tic_tac_toe.cpp
 #include "tic_tac_toe.h"
 
@@ -7,12 +8,13 @@
  */
 void TicTacToe::start_game(string first_player)
 {
-  if(first_player == "O" || first_player == "X")
+  if(!(first_player == "O" || first_player == "X"))
   {
-    next_player = first_player;
+	  throw Error("Player must be X or O.\n");
     
   }else{
-      throw Error("Player must be X or O.\n");
+	  clear_board();
+	  player = first_player;
   }
 }
 
@@ -27,21 +29,65 @@ void TicTacToe::mark_board(int position)
   {
     throw Error("\nPosition must be in range 1 to 9.");
   }
-  if (next_player == "")
+  else if (player == " ")
   {
     throw Error("\nMust start game first.");
   }
-  set_next_player();
+  else
+  {
+	  pegs[position - 1] = player;
+	  set_next_player();
+  }
+  
+}
+
+void TicTacToe::display_board() const
+{
+	for (size_t i = 0; i < 9; i += 3)
+	{
+		cout << pegs[i] <<"|" << pegs[i + 1] << "|" << pegs[i + 2] << "\n";
+	}
+
 }
 
 void TicTacToe::set_next_player()
 {
-    if(next_player == "X")
+    if(player == "X")
     {
-        next_player = "O";
+        player = "O";
     }
-    else
+    else if (player == "O")
     {
-        next_player = "X";
+        player = "X";
     }
+	else
+	{
+		throw Error("Error");
+	}
+}
+
+//game over function
+bool TicTacToe::game_over()
+{
+	return check_board_full();
+}
+
+bool TicTacToe::check_board_full()
+{
+	for (auto peg : pegs)
+	{
+		if (peg == " ")
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+void TicTacToe::clear_board()
+{
+	for (auto &peg : pegs)
+	{
+		peg = " ";
+	}
 }
