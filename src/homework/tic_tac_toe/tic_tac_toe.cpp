@@ -47,7 +47,7 @@ void TicTacToe::display_board() const
 	{
 		cout << pegs[i] <<"|" << pegs[i + 1] << "|" << pegs[i + 2] << "\n";
 	}
-
+	cout << "\n";
 }
 
 void TicTacToe::set_next_player()
