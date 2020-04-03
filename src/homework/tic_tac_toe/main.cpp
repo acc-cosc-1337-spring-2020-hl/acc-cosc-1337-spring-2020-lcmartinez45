@@ -1,6 +1,7 @@
 //main.cpp
 #include "tic_tac_toe.h"
 #include<iostream>
+#include<string>
 using std::cout; using std::cin;
 /*
 The program will call the start_game function with argument O or X to indicate first player and will keep track of the next player while players take turns marking the board until user opts out.
@@ -11,42 +12,47 @@ The program will call the start_game function with argument O or X to indicate f
  */
 int main()
 {
-	string player = "Y";
-	TicTacToe game;
-	while (!(player == "O" || player == "X"))
-	{
-		try
-		{
-			cout << "Hello welcome to tictactoe game! Please enter first player, \"X\" or \"O\"." << "\n";
-			cin >> first_player;
-			game.start_game(first_player);
-		}
-		catch (Error e)
-		{
-			cout << e.get_message();
-		}
-	}
-
-   do
+    int choice = 1;
+    do
     {
-        int position;
-        cout << "Enter a number from 1-9 to place your spot on the board." << "\n";
-        cin >> position;
+        string first_player;
+        cout << "Hello welcome to tictactoe game! Please enter first player, \"X\" or \"O\"." << "\n";
+        cin >> first_player;
         
-        try
+        while (!(first_player == "O" || first_player == "X"))
         {
-            int mark_board(position);
+            cout << "ERROR, sorry you must input X or O: ";
+            cin >> first_player;
         }
-        catch (Error e)
+        TicTacToe game;
+        game.start_game(first_player);
+
+        do
         {
-            cout << e.get_message();
-        }
+            int position;
+            cout << "Enter a number from 1-9 to place your spot on the board." << "\n";
+            cin >> position;
+        
+            try
+            {
+                game.mark_board(position);
+                game.display_board();
+            }
+            catch (Error e)
+            {
+                cout << e.get_message();
+            }
+        
+        } while (!game.game_over());
+        cout << "\nGAME OVER!!!" << "\n";
         cout << "\nContinue? 1 for Yes: " << "\n";
         cin >> choice;
-		game.display_board();
-    } while (!game.game_over());
-    
-    cout << "\nThanks for playing!";
+        
+    }while (choice == 1);
+        
+    cout << "\nThanks for playing!" << "\n";
     
     return 0;
 }
+
+

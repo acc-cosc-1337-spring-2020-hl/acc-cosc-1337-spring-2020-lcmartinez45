@@ -2,6 +2,32 @@
 //tic_tac_toe.cpp
 #include "tic_tac_toe.h"
 
+//game over function
+bool TicTacToe::game_over()
+{
+    if (check_column_win() == true)
+    {
+        return true;
+    }
+    else if (check_row_win() == true)
+    {
+        return true;
+    }
+    else if (check_diagonal_win() == true)
+    {
+        return true;
+    }
+    else if (check_board_full() == true)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+
 /*
  1) first_player function argument value must be X or O; otherwise, throw an Error exception when value is not X or O.  Error Message: Player must be X or O.
  2)In function set player(private variable) to first_player function argument.
@@ -13,8 +39,8 @@ void TicTacToe::start_game(string first_player)
 	  throw Error("Player must be X or O.\n");
     
   }else{
-	  clear_board();
 	  player = first_player;
+      clear_board();
   }
 }
 
@@ -50,28 +76,6 @@ void TicTacToe::display_board() const
 	cout << "\n";
 }
 
-void TicTacToe::set_next_player()
-{
-    if(player == "X")
-    {
-        player = "O";
-    }
-    else if (player == "O")
-    {
-        player = "X";
-    }
-	else
-	{
-		throw Error("Error");
-	}
-}
-
-//game over function
-bool TicTacToe::game_over()
-{
-	return check_board_full();
-}
-
 bool TicTacToe::check_board_full()
 {
 	for (auto peg : pegs)
@@ -84,6 +88,22 @@ bool TicTacToe::check_board_full()
 	return true;
 }
 
+void TicTacToe::set_next_player()
+{
+    if(player == "X")
+    {
+        player = "O";
+    }
+    else if (player == "O")
+    {
+        player = "X";
+    }
+    else
+    {
+        throw Error("Error");
+    }
+}
+
 void TicTacToe::clear_board()
 {
 	for (auto &peg : pegs)
@@ -91,3 +111,104 @@ void TicTacToe::clear_board()
 		peg = " ";
 	}
 }
+
+void TicTacToe::set_winner()
+{
+    if (player == "X")
+    {
+        winner = "O";
+    }
+    else
+    {
+        winner = "X";
+    }
+}
+
+bool TicTacToe::check_column_win()
+{
+    if (pegs[0] == "X" && pegs[3] == "X" && pegs[6] == "X")
+    {
+        return true;
+    }
+    else if (pegs[1] == "X" && pegs[4] == "X" && pegs[7] == "X")
+    {
+        return true;
+    }
+    else if (pegs[2] == "X" && pegs[5] == "X" && pegs[8] == "X")
+    {
+        return true;
+    }
+    else if (pegs[0] == "O" && pegs[3] == "O" && pegs[6] == "O")
+    {
+        return true;
+    }
+    else if (pegs[1] == "O" && pegs[4] == "O" && pegs[7] == "O")
+    {
+        return true;
+    }
+    else if (pegs[2] == "O" && pegs[5] == "O" && pegs[8] == "O")
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool TicTacToe::check_row_win()
+{
+    if (pegs[0] == "X" && pegs[1] == "X" && pegs[2] == "X")
+    {
+        return true;
+    }
+    else if (pegs[3] == "X" && pegs[4] == "X" && pegs[5] == "X")
+    {
+        return true;
+    }
+    else if (pegs[6] == "X" && pegs[7] == "X" && pegs[8] == "X")
+    {
+        return true;
+    }
+    else if (pegs[0] == "O" && pegs[1] == "O" && pegs[2] == "O")
+    {
+        return true;
+    }
+    else if (pegs[3] == "O" && pegs[4] == "O" && pegs[5] == "O")
+    {
+        return true;
+    }
+    else if (pegs[6] == "O" && pegs[7] == "O" && pegs[8] == "O")
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool TicTacToe::check_diagonal_win()
+{
+    if (pegs[0] == "X" && pegs[4] == "X" && pegs[8] == "X")
+    {
+        return true;
+    }
+    else if (pegs[6] == "X" && pegs[4] == "X" && pegs[2] == "X")
+    {
+        return true;
+    }
+    else if (pegs[0] == "O" && pegs[4] == "O" && pegs[8] == "O")
+    {
+        return true;
+    }
+    else if (pegs[6] == "O" && pegs[4] == "O" && pegs[2] == "O")
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+

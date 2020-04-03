@@ -2,19 +2,26 @@
 #include "savings_account.h"
 #include<iostream>
 #include<vector>
+#include<memory>
 
 using std::cout; using std::cin; using std::vector;
-using std::reference_wrapper;
+using std::unique_ptr; using std::make_unique;
 
 int main()
 {
-	SavingsAccount s(100);
-	CheckingAccount c(100);
+    //I want to create a pointer to BankAcct
+    BankAccount* z = new BankAccount(100);
+    //more code
+    delete z;
+    
+    //declare unique pointer           create the instance with make unique
+	unique_ptr<BankAccount> s = make_unique<SavingsAccount>(100);
+	unique_ptr<BankAccount> c = make_unique<CheckingAccount>(100);
 
-	vector<reference_wrapper<BankAccount>> acts{s, c};
-	for (auto account_ref : acts)
+	vector<unique_ptr<BankAccount>> acts{std::move(s), std::move(c)};
+	for (auto &account : acts) //reference unique ptr to bank account
 	{
-		cout << account_ref.get().get_balance() << "\n";
+		cout << account->get_balance() << "\n"; //display get balance
 	}
 	
 
