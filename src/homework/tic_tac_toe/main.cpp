@@ -46,12 +46,13 @@ int main()
         
         } while (!game.game_over());
         cout << "\nGAME OVER!!!" << "\n";
+        
+        //cout << "\nWinner: " << game.get_winner() << "\n"; Todo: get this to print winner **Help Prof
+        
         cout << "\nContinue? 1 for Yes: " << "\n";
         cin >> choice;
-        
     }while (choice == 1);
-        
-    cout << "\nThanks for playing!" << "\n";
+    cout << "\nThank you for playing!" << "\n";
     
     return 0;
 }

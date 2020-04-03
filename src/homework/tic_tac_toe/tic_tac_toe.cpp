@@ -2,7 +2,7 @@
 //tic_tac_toe.cpp
 #include "tic_tac_toe.h"
 
-//game over function
+//Game over function
 bool TicTacToe::game_over()
 {
     if (check_column_win() == true)
@@ -26,7 +26,6 @@ bool TicTacToe::game_over()
         return false;
     }
 }
-
 
 /*
  1) first_player function argument value must be X or O; otherwise, throw an Error exception when value is not X or O.  Error Message: Player must be X or O.
@@ -67,6 +66,7 @@ void TicTacToe::mark_board(int position)
   
 }
 
+//Display board function
 void TicTacToe::display_board() const
 {
 	for (size_t i = 0; i < 9; i += 3)
