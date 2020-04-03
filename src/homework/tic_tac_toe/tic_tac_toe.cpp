@@ -53,7 +53,7 @@ void TicTacToe::mark_board(int position)
 {
   if (position < 1 || position > 9)
   {
-    throw Error("\nPosition must be in range 1 to 9.");
+    throw Error("\nError: must be in range.");
   }
   else if (player == " ")
   {
@@ -71,7 +71,7 @@ void TicTacToe::display_board() const
 {
 	for (size_t i = 0; i < 9; i += 3)
 	{
-		cout << pegs[i] <<"  |  " << pegs[i + 1] << "  |  " << pegs[i + 2] << "\n";
+		cout << pegs[i] <<" | " << pegs[i + 1] << " | " << pegs[i + 2] << "\n";
 	}
 	cout << "\n";
 }

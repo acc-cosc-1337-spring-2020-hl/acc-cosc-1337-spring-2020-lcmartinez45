@@ -16,7 +16,8 @@ int main()
     do
     {
         string first_player;
-        cout << "Hello welcome to tictactoe game! Please enter first player, \"X\" or \"O\"." << "\n";
+        cout << "Hello welcome to my TicTacToe Game!" << "\n";
+        cout << "Please enter first player, \"X\" or \"O\"." << "\n";
         cin >> first_player;
         
         while (!(first_player == "O" || first_player == "X"))
@@ -30,7 +31,7 @@ int main()
         do
         {
             int position;
-            cout << "Enter a number from 1-9 to place your spot on the board." << "\n";
+            cout << "\nEnter a number from 1-9 to place your spot on the board." << "\n";
             cin >> position;
         
             try
