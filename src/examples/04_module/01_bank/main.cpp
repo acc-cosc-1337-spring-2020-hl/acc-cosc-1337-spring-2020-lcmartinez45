@@ -1,3 +1,4 @@
+#include "atm.h"
 #include "checking_account.h"
 #include "savings_account.h"
 #include<iostream>
@@ -9,17 +10,24 @@ using std::unique_ptr; using std::make_unique;
 
 int main()
 {
-    //I want to create a pointer to BankAcct
-    BankAccount* z = new BankAccount(100);
-    //more code
-    delete z;
+    //declare uniqueptr           create the instance w make unique
+    unique_ptr<BankAccount> s = make_unique<SavingsAccount>(100);
+    unique_ptr<BankAccount> c = make_unique<CheckingAccount>(100);
     
-    //declare unique pointer           create the instance with make unique
-	unique_ptr<BankAccount> s = make_unique<SavingsAccount>(100);
-	unique_ptr<BankAccount> c = make_unique<CheckingAccount>(100);
-
-	vector<unique_ptr<BankAccount>> acts{std::move(s), std::move(c)};
-	for (auto &account : acts) //reference unique ptr to bank account
+    vector<unique_ptr<BankAccount>> acts;// {std::move(s), std::move(c)};
+    acts.push_back(std::move(s));
+    acts.push_back(std::move(c));
+    
+    Customer cust(acts);
+    ATM atm(cust);
+    
+    //some interaction w customer
+    cout << atm;
+    
+    return 0;
+}
+     
+	/*for (auto &account : acts) //reference unique ptr to bank account
 	{
 		cout << account->get_balance() << "\n"; //display get balance
 	}
@@ -51,5 +59,4 @@ int main()
 	{
 		cout << e.get_message();
 	}
-	return 0;
-}
+}*/

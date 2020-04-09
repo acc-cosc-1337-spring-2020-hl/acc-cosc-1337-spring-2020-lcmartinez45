@@ -11,13 +11,14 @@ class Customer
 {
 public:
     
-    Customer(std::vector<std::unique_ptr <BankAccount>>*&acts) : accounts{acts}
+    Customer(std::vector<std::unique_ptr <BankAccount>>& acts) : accounts{ std::move(acts) }
     {
         
     }
     friend std::ostream& operator << (std::ostream& out, const Customer& c);
-private:
-    std::vector<std::unique_ptr<BankAccount>>*accounts;
+    
+private:    //reference to bank account
+    std::vector<std::unique_ptr<BankAccount>> accounts;
 
 
 };
