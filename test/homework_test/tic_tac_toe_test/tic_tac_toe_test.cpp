@@ -94,7 +94,7 @@ TEST_CASE("Test game over when board full and there is a tie.")
 	REQUIRE(game.game_over() == false);
 	game.mark_board(8);
 	REQUIRE(game.game_over() == true);
-    REQUIRE(game.get_winner() == "X");
+
 }
 TEST_CASE("Test win by first column", "[X wins first column]")
  { /* Tic Tac Toe Board
