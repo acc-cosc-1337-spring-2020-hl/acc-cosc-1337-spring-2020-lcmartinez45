@@ -7,6 +7,7 @@ using std::string; using std::cout;
 
 #ifndef TIC_TAC_TOE_H
 #define TIC_TAC_TOE_H
+
 class TicTacToe
 {
 public:
@@ -17,6 +18,8 @@ public:
     string get_player()const { return player; }
     void display_board()const;
     string get_winner() { return winner; }
+    friend std::ostream& operator<<(std::ostream& out, TicTacToe& c); //get winner
+    friend std::istream& operator>>(std::istream& in, TicTacToe& c); //set winner
   
 private:
     void set_next_player();
@@ -30,7 +33,7 @@ private:
     //Class member variable
     std::vector<string> pegs{ 9, " " };
     string player;
-    string winner;
+    string winner; //X, O, C
 };
 
 class Error

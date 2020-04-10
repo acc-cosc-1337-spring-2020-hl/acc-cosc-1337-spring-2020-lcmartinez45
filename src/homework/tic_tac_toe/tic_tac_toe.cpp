@@ -1,6 +1,6 @@
-#include "tic_tac_toe.h"
 //tic_tac_toe.cpp
 #include "tic_tac_toe.h"
+#include<iostream>
 
 //Game over function
 bool TicTacToe::game_over()
@@ -61,7 +61,11 @@ void TicTacToe::mark_board(int position)
   else
   {
 	  pegs[position - 1] = player;
-	  set_next_player();
+      
+      if(game_over() == false)
+      {
+          set_next_player();
+      }
   }
   
 }
@@ -210,5 +214,25 @@ bool TicTacToe::check_diagonal_win()
     {
         return false;
     }
+}
+
+std::ostream& operator<<(std::ostream& out, const TicTacToe& c)
+{
+    out << "\n";
+
+    for (std::size_t i = 0; i < 9; i += 3)
+    {
+        cout << c.pegs[i] << " | " << c.pegs[i + 1] << " | " << c.pegs[i + 2] << "\n";
+    }
+    return out;
+}
+
+std::istream & operator>>(std::istream& in, TicTacToe& c)
+{
+    int position;
+    cout << "Put your mark on the board using 1-9: \n";
+    in >> position;
+    c.mark_board(position);
+    return in;
 }
 

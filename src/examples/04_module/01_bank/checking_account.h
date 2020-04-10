@@ -1,3 +1,5 @@
+#ifndef CHECKING_ACCOUNT_H
+#define CHECKING_ACCOUNT_H
 #include "bank_account.h"
 //checking_account.h
 
@@ -12,3 +14,4 @@ public:
 	int get_balance()const { return balance * (1 + get_rate()); }
 
 };
+#endif // !CHECKING_ACCOUNT_H
