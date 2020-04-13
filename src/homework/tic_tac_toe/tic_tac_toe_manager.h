@@ -8,7 +8,8 @@ using std::vector;
 #ifndef TIC_TAC_TOE_MANAGER_H
 #define TIC_TAC_TOE_MANAGER_H
 
-class TicTacToeManager {
+class TicTacToeManager
+{
 public:
 	void save_game(const TicTacToe b);
 	friend std::ostream& operator<<(std::ostream & out, const TicTacToeManager &manager);
