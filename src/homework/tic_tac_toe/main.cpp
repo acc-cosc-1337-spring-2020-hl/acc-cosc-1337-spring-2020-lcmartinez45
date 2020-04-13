@@ -40,12 +40,12 @@ int main()
         } while (!game.game_over());
             
             if (game.game_over()) {
-            cout << "Game over! \n";
-            game_manager.save_game(game);
-            cout << game_manager;
-            game_manager.get_winner_total();
-            cout << "\nContinue? 1 for Yes: " << "\n";
-            cin >> choice;
+                cout << "Game over! \n";
+                game_manager.save_game(game);
+                cout << game_manager;
+                game_manager.get_winner_total();
+                cout << "\nContinue? 1 for Yes: " << "\n";
+                cin >> choice;
             }
         
     }while (choice == 1);
