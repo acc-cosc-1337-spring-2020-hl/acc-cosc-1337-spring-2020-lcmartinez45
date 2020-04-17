@@ -5,20 +5,14 @@
 //Game over function
 bool TicTacToe::game_over()
 {
-    if (check_column_win() == true)
+    if (check_column_win() || check_row_win() || check_diagonal_win())
     {
+        set_winner();
         return true;
     }
-    else if (check_row_win() == true)
+    else if (check_board_full())
     {
-        return true;
-    }
-    else if (check_diagonal_win() == true)
-    {
-        return true;
-    }
-    else if (check_board_full() == true)
-    {
+        winner = "C";
         return true;
     }
     else
@@ -27,10 +21,6 @@ bool TicTacToe::game_over()
     }
 }
 
-/*
- 1) first_player function argument value must be X or O; otherwise, throw an Error exception when value is not X or O.  Error Message: Player must be X or O.
- 2)In function set player(private variable) to first_player function argument.
- */
 void TicTacToe::start_game(string first_player)
 {
   if(!(first_player == "O" || first_player == "X"))
@@ -43,11 +33,6 @@ void TicTacToe::start_game(string first_player)
   }
 }
 
-/*
- 1) Value of int must be in the range 1 to 9; otherwise, throw an Error exception if value not in this range. Error Message: Position must be 1 to 9.
- 2) Private data player can't be empty "", throw an Error exception if player variable is "". Error Message: Must start game first.
- 3) Call set_next_player private function
- */
 void TicTacToe::mark_board(int position)
 {
   if (position < 1 || position > 9)
@@ -68,16 +53,6 @@ void TicTacToe::mark_board(int position)
       }
   }
   
-}
-
-//Display board function
-void TicTacToe::display_board() const
-{
-	for (size_t i = 0; i < 9; i += 3)
-	{
-		cout << pegs[i] <<" | " << pegs[i + 1] << " | " << pegs[i + 2] << "\n";
-	}
-	cout << "\n";
 }
 
 bool TicTacToe::check_board_full()
@@ -119,124 +94,32 @@ void TicTacToe::clear_board()
 //set the winner = to player
 void TicTacToe::set_winner()
 {
-    winner = player;
-}
-
-//set the winner = to each type of win to return winner
-bool TicTacToe::check_column_win()
-{
-    if (pegs[0] == "X" && pegs[3] == "X" && pegs[6] == "X")
+    if (player == "X")
     {
-        set_winner();
-        return true;
+        winner = "O";
     }
-    else if (pegs[1] == "X" && pegs[4] == "X" && pegs[7] == "X")
-    {
-        set_winner();
-        return true;
-    }
-    else if (pegs[2] == "X" && pegs[5] == "X" && pegs[8] == "X")
-    {
-        set_winner();
-        return true;
-    }
-    else if (pegs[0] == "O" && pegs[3] == "O" && pegs[6] == "O")
-    {
-        set_winner();
-        return true;
-    }
-    else if (pegs[1] == "O" && pegs[4] == "O" && pegs[7] == "O")
-    {
-        set_winner();
-        return true;
-    }
-    else if (pegs[2] == "O" && pegs[5] == "O" && pegs[8] == "O")
-    {
-        set_winner();
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
-//set the winner = to each type of win to return winner
-bool TicTacToe::check_row_win()
-{
-    if (pegs[0] == "X" && pegs[1] == "X" && pegs[2] == "X")
-    {
-        set_winner();
-        return true;
-    }
-    else if (pegs[3] == "X" && pegs[4] == "X" && pegs[5] == "X")
-    {
-        set_winner();
-        return true;
-    }
-    else if (pegs[6] == "X" && pegs[7] == "X" && pegs[8] == "X")
-    {
-        set_winner();
-        return true;
-    }
-    else if (pegs[0] == "O" && pegs[1] == "O" && pegs[2] == "O")
-    {
-        set_winner();
-        return true;
-    }
-    else if (pegs[3] == "O" && pegs[4] == "O" && pegs[5] == "O")
-    {
-        set_winner();
-        return true;
-    }
-    else if (pegs[6] == "O" && pegs[7] == "O" && pegs[8] == "O")
-    {
-        set_winner();
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
-//set the winner = to each type of win to return winner
-bool TicTacToe::check_diagonal_win()
-{
-    if (pegs[0] == "X" && pegs[4] == "X" && pegs[8] == "X")
-    {
-        set_winner();
-        return true;
-    }
-    else if (pegs[6] == "X" && pegs[4] == "X" && pegs[2] == "X")
-    {
-        set_winner();
-        return true;
-    }
-    else if (pegs[0] == "O" && pegs[4] == "O" && pegs[8] == "O")
-    {
-        set_winner();
-        return true;
-    }
-    else if (pegs[6] == "O" && pegs[4] == "O" && pegs[2] == "O")
-    {
-        set_winner();
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    else { winner = "X"; }
 }
 
 //get winner overloaded function
-std::ostream& operator<<(std::ostream& out, TicTacToe &c)
+std::ostream& operator<<(std::ostream& out,const TicTacToe &c)
 {
-    cout << "\n";
-
-    for (std::size_t i = 0; i < 9; i += 3)
+    if (c.pegs.size() == 9)
     {
-        cout << c.pegs[i] << " | " << c.pegs[i + 1] << " | " << c.pegs[i + 2] << "\n";
+        cout << "\n";
+
+        for (std::size_t i = 0; i < 9; i += 3)
+        {
+            out << c.pegs[i] << " | " << c.pegs[i + 1] << " | " << c.pegs[i + 2] << "\n";
+        }
+    }
+        
+    else
+    {
+        for (int i = 0; i < 16; i += 4)
+        {
+            out << c.pegs[i] << "|" << c.pegs[i + 1] << "|" << c.pegs[i + 2] << "|" << c.pegs[i + 3] << "\n";
+        }
     }
     return out;
 }
@@ -248,6 +131,6 @@ std::istream & operator>>(std::istream& in, TicTacToe &c)
     cout << "Put your mark on the board using 1-9: \n";
     in >> position;
     c.mark_board(position);
+        
     return in;
 }
-
