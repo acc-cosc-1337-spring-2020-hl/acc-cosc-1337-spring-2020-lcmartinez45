@@ -1,82 +1,79 @@
-//main.cpp
-#include "tic_tac_toe.h"
 #include "tic_tac_toe_manager.h"
 #include "tic_tac_toe_3.h"
 #include "tic_tac_toe_4.h"
-#include <vector>
-#include<functional>
 #include<iostream>
-#include<string>
+#include<functional>
+
 using std::cout; using std::cin; using std::string;
 
 int main()
 {
-    int choice = 1;
-    int position;
-    TicTacToeManager manager;
-    std::vector < std::reference_wrapper<TicTacToe>> games;
-    do
-    {
-        int gameType = 0;
-        cout << "Hello welcome to my TicTacToe Game!" << "\n";
-        cout << "Do you want to play TicTacToe 3 or 4? " << "\n";
-        cin >> gameType;
-        string first_player;
-        
-        if (gameType == 3)
-        {
-            TicTacToe3 game;
-            cout << "Please enter first player, \"X\" or \"O\"." << "\n";
-            cin >> first_player;
-        
-            while (!(first_player == "O" || first_player == "X"))
-            {
-                try {
-                    cout << "ERROR, sorry you must input X or O: ";
-                    cin >> first_player;
-                    game.start_game(first_player);
-                }
-                catch (Error e) {
+	TicTacToeManager manager;
+	string cont;
+	std::vector<std::reference_wrapper<TicTacToe>> games;
 
-                    cout << e.get_message();
-                }
-            }
+	do
+	{
+		int game_type;
+		cout << "\nTictactoe 3 or 4?";
+		cin >> game_type;
+		TicTacToe3 game3;
+		TicTacToe4 game4;
 
-        while (!game.game_over());
-        }
-        else{
-            TicTacToe4 game;
-                cout << "Please enter first player, \"X\" or \"O\"." << "\n";
-                cin >> first_player;
-            
-                while (!(first_player == "O" || first_player == "X"))
-                {
-                    try {
-                        cout << "ERROR, sorry you must input X or O: ";
-                        cin >> first_player;
-                        game.start_game(first_player);
-                    }
-                    catch (Error e) {
+		if (game_type == 3)
+		{
+			games.push_back(game3);
+		}
+		else if (game_type == 4)
+		{
+			games.push_back(game4);
+		}
 
-                        cout << e.get_message();
-                    }
-                }
+		std::reference_wrapper<TicTacToe> game = games.back();
 
-            while (!game.game_over());
-            
-        manager.save_game(game);
-        cout << "Game over! \n";
-        cout << "The winner is: " << game.get_winner()<< "\n" ;
-        cout << manager;
-        cout << "\nContinue? 1 for Yes: " << "\n";
-        cin >> choice;
-        }
-    }
-    while (choice == 1);
-        cout << manager<<"\n\n";
-        cout << "\nThank you for playing!" << "\n";
-    
-    return 0;
+		string player = "Y";
+
+		while (!(player == "O" || player == "X"))
+		{
+			try
+			{
+				cout << "Enter player: ";
+				cin >> player;
+
+				game.get().start_game(player);
+			}
+			catch (Error e)
+			{
+				cout << e.get_message();
+			}
+		}
+
+		int choice = 1;
+
+		do
+		{
+			try
+			{
+				cin >> game.get();
+				cout << game.get();
+			}
+			catch (Error e)
+			{
+				cout << e.get_message();
+			}
+
+		} while (!game.get().game_over());
+
+		manager.save_game(game.get());
+
+		cout << "\nWinner: " << game.get().get_winner() << "\n";
+
+		cout << "Enter Y to play again: ";
+		cin >> cont;
+
+	} while (cont == "Y");
+
+	cout << manager;
+
+	return 0;
 }
-
-
