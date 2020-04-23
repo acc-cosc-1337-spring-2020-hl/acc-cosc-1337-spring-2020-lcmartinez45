@@ -10,36 +10,17 @@ else
 false
 */
 
-bool TicTacToe3::check_column_win()
+bool TicTacToe3::check_row_win()
 {
-    if (pegs[0] == "X" && pegs[3] == "X" && pegs[6] == "X")
+    for (std::size_t i = 0; i < 9; i += 3)
     {
-        return true;
+        if (pegs[i] == pegs[i + 1] && pegs[i + 1] == pegs[i + 2] && pegs[i] != " ")
+        {
+            return true;
+        }
     }
-    else if (pegs[1] == "X" && pegs[4] == "X" && pegs[7] == "X")
-    {
-        return true;
-    }
-    else if (pegs[2] == "X" && pegs[5] == "X" && pegs[8] == "X")
-    {
-        return true;
-    }
-    else if (pegs[0] == "O" && pegs[3] == "O" && pegs[6] == "O")
-    {
-        return true;
-    }
-    else if (pegs[1] == "O" && pegs[4] == "O" && pegs[7] == "O")
-    {
-        return true;
-    }
-    else if (pegs[2] == "O" && pegs[5] == "O" && pegs[8] == "O")
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+
+    return false;
 }
 
 /*
@@ -50,38 +31,20 @@ Win by row if
 6,7,8 are equal
 */
 
-
-bool TicTacToe3::check_row_win()
+bool TicTacToe3::check_column_win()
 {
-    if (pegs[0] == "X" && pegs[1] == "X" && pegs[2] == "X")
+    for (std::size_t i = 0; i < 3; i++)
     {
-        return true;
+        if (pegs[i] == pegs[i + 3] && pegs[i + 3] == pegs[i + 6]
+            && pegs[i + 6] != " ")
+        {
+            return true;
+        }
     }
-    else if (pegs[3] == "X" && pegs[4] == "X" && pegs[5] == "X")
-    {
-        return true;
-    }
-    else if (pegs[6] == "X" && pegs[7] == "X" && pegs[8] == "X")
-    {
-        return true;
-    }
-    else if (pegs[0] == "O" && pegs[1] == "O" && pegs[2] == "O")
-    {
-        return true;
-    }
-    else if (pegs[3] == "O" && pegs[4] == "O" && pegs[5] == "O")
-    {
-        return true;
-    }
-    else if (pegs[6] == "O" && pegs[7] == "O" && pegs[8] == "O")
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+
+    return false;
 }
+
 
 /*
 class function check_diagonal_win
@@ -93,24 +56,11 @@ Win diagonally
 
 bool TicTacToe3::check_diagonal_win()
 {
-    if (pegs[0] == "X" && pegs[4] == "X" && pegs[8] == "X")
+    if (pegs[0] == pegs[4] && pegs[4] == pegs[8] && pegs[0] != " " ||
+        pegs[2] == pegs[4] && pegs[4] == pegs[6] && pegs[2] != " ")
     {
         return true;
     }
-    else if (pegs[6] == "X" && pegs[4] == "X" && pegs[2] == "X")
-    {
-        return true;
-    }
-    else if (pegs[0] == "O" && pegs[4] == "O" && pegs[8] == "O")
-    {
-        return true;
-    }
-    else if (pegs[6] == "O" && pegs[4] == "O" && pegs[2] == "O")
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+
+    return false;
 }

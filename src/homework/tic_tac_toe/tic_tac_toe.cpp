@@ -1,11 +1,11 @@
-//tic_tac_toe.cpp
+//cpp
 #include "tic_tac_toe.h"
-#include<iostream>
 
-//Game over function
+using std::string; using std::cout;
+
 bool TicTacToe::game_over()
 {
-    if (check_column_win() || check_row_win() || check_diagonal_win())
+    if (check_row_win() || check_column_win() || check_diagonal_win())
     {
         set_winner();
         return true;
@@ -15,61 +15,44 @@ bool TicTacToe::game_over()
         winner = "C";
         return true;
     }
-    else
-    {
-        return false;
-    }
+    
+    return false;
 }
 
 void TicTacToe::start_game(string first_player)
 {
-  if(!(first_player == "O" || first_player == "X"))
-  {
-	  throw Error("Player must be X or O.\n");
+    if (!(first_player == "X" || first_player == "O"))
+    {
+        throw Error("Player must be X or O.");
+    }
     
-  }else{
-	  player = first_player;
-      clear_board();
-  }
+    player = first_player;
+    clear_board();
 }
 
 void TicTacToe::mark_board(int position)
 {
-  if (position < 1 || position > 9)
-  {
-    throw Error("\nError: must be in range.");
-  }
-  else if (player == " ")
-  {
-    throw Error("\nMust start game first.");
-  }
-  else
-  {
-	  pegs[position - 1] = player;
-      
-      if(game_over() == false)
-      {
-          set_next_player();
-      }
-  }
-  
-}
-
-bool TicTacToe::check_board_full()
-{
-	for (auto peg : pegs)
-	{
-		if (peg == " ")
-		{
-			return false;
-		}
-	}
-	return true;
+    if (position < 1 || position > 9 && pegs.size() == 9)
+    {
+        throw Error("Position must be 1 to 9.");
+    }
+    else if(position < 1 || position > 16 && pegs.size() == 16)
+    {
+        throw Error("Position must be 1 to 16.");
+    }
+    else if (player == "")
+    {
+        throw Error("Game must start first.");
+    }
+    
+    pegs[position - 1] = player;
+    set_next_player();
+    
 }
 
 void TicTacToe::set_next_player()
 {
-    if(player == "X")
+    if (player == "X")
     {
         player = "O";
     }
@@ -79,58 +62,81 @@ void TicTacToe::set_next_player()
     }
     else
     {
-        throw Error("Error");
+        throw Error("Player Unknown.");
     }
+}
+
+bool TicTacToe::check_board_full()
+{
+    for (std::size_t i = 0; i < pegs.size(); ++i)
+    {
+        if (pegs[i] == " ")
+        {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 void TicTacToe::clear_board()
 {
-	for (auto &peg : pegs)
-	{
-		peg = " ";
-	}
+    for (auto &peg : pegs)
+    {
+        peg = " ";
+    }
 }
 
-//set the winner = to player
+bool TicTacToe::check_row_win()
+{
+    return false;
+}
+
+bool TicTacToe::check_column_win()
+{
+    return false;
+}
+
+bool TicTacToe::check_diagonal_win()
+{
+    return false;
+}
+
 void TicTacToe::set_winner()
 {
     if (player == "X")
     {
         winner = "O";
     }
-    else { winner = "X"; }
-}
-
-//get winner overloaded function
-std::ostream& operator<<(std::ostream& out,const TicTacToe &c)
-{
-    if (c.pegs.size() == 9)
-    {
-        cout << "\n";
-
-        for (std::size_t i = 0; i < 9; i += 3)
-        {
-            out << c.pegs[i] << " | " << c.pegs[i + 1] << " | " << c.pegs[i + 2] << "\n";
-        }
-    }
-        
     else
     {
-        for (int i = 0; i < 16; i += 4)
-        {
-            out << c.pegs[i] << "|" << c.pegs[i + 1] << "|" << c.pegs[i + 2] << "|" << c.pegs[i + 3] << "\n";
-        }
+        winner = "X";
     }
+}
+
+std::ostream & operator<<(std::ostream & out, const TicTacToe & t)
+{
+    for (std::size_t i = 0; i < t.pegs.size(); i += sqrt(t.pegs.size()))
+    {
+        out << t.pegs[i] << "|" << t.pegs[i + 1] << "|" << t.pegs[i + 2];
+
+        if (t.pegs.size() == 16)
+        {
+            out << "|" << t.pegs[i + 3];
+        }
+
+        out << "\n";
+    }
+
     return out;
 }
 
-//set winner overloaded function
-std::istream & operator>>(std::istream& in, TicTacToe &c)
+std::istream & operator>>(std::istream & in, TicTacToe & t)
 {
-    int position;
-    cout << "Put your mark on the board using 1-9: \n";
-    in >> position;
-    c.mark_board(position);
-        
+    int pos;
+    cout << "Enter position: ";
+    in >> pos;
+    t.mark_board(pos);
+
     return in;
 }
