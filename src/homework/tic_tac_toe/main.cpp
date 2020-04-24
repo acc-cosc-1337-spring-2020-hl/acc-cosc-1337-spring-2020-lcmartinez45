@@ -3,77 +3,75 @@
 #include "tic_tac_toe_4.h"
 #include<iostream>
 #include<functional>
+#include<memory>
 
 using std::cout; using std::cin; using std::string;
+using std::unique_ptr; using std::make_unique;
 
 int main()
 {
-	TicTacToeManager manager;
-	string cont;
-	std::vector<std::reference_wrapper<TicTacToe>> games;
+    unique_ptr<TicTacToeManager> manager{ new TicTacToeManager() };
+    string cont;
 
-	do
-	{
-		int game_type;
-		cout << "\nTictactoe 3 or 4?";
-		cin >> game_type;
-		TicTacToe3 game3;
-		TicTacToe4 game4;
+    do
+    {
+        unique_ptr<TicTacToe> games;
+        int game_type;
+        cout << "\nTictactoe 3 or 4?";
+        cin >> game_type;
+        
+        if (game_type == 3)
+        {
+            games = make_unique<TicTacToe3>();
+        }
+        else if(game_type == 4)
+        {
+            games = make_unique<TicTacToe4>();
+        }
 
-		if (game_type == 3)
-		{
-			games.push_back(game3);
-		}
-		else if (game_type == 4)
-		{
-			games.push_back(game4);
-		}
+        string player = "Y";
 
-		std::reference_wrapper<TicTacToe> game = games.back();
+        while (!(player == "O" || player == "X"))
+        {
+            try
+            {
+                cout << "Enter player: ";
+                cin >> player;
 
-		string player = "Y";
+                games->start_game(player);
+            }
+            catch (Error e)
+            {
+                cout << e.get_message();
+            }
+        }
 
-		while (!(player == "O" || player == "X"))
-		{
-			try
-			{
-				cout << "Enter player: ";
-				cin >> player;
+        int choice = 1;
 
-				game.get().start_game(player);
-			}
-			catch (Error e)
-			{
-				cout << e.get_message();
-			}
-		}
+        do
+        {
+            try
+            {
+                cin >> *games;
+                cout << *games;
+            }
+            catch (Error e)
+            {
+                cout << e.get_message();
+            }
 
-		int choice = 1;
+        } while (!games->game_over());
 
-		do
-		{
-			try
-			{
-				cin >> game.get();
-				cout << game.get();
-			}
-			catch (Error e)
-			{
-				cout << e.get_message();
-			}
+        manager -> save_game(games);
 
-		} while (!game.get().game_over());
+        cout << "\nWinner: " << games->get_winner()<<"\n";
 
-		manager.save_game(game.get());
+        cout << "Enter Y to play again: ";
+        cin >> cont;
+    
+    } while (cont == "Y");
 
-		cout << "\nWinner: " << game.get().get_winner() << "\n";
+    cout << *manager;
 
-		cout << "Enter Y to play again: ";
-		cin >> cont;
-
-	} while (cont == "Y");
-
-	cout << manager;
-
-	return 0;
+    return 0;
 }

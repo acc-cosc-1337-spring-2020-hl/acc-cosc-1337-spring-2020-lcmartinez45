@@ -1,4 +1,6 @@
 //
+#include<stddef.h>
+#include<cstddef>
 #ifndef MY_VECTOR_H
 #define MY_VECTOR_H
 //Rule of 3, taking the role of memory management we have to take a lot of overhead

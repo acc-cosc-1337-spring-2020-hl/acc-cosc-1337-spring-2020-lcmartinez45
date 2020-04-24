@@ -1,5 +1,6 @@
 //cpp
 #include "tic_tac_toe.h"
+#include <cmath>
 
 using std::string; using std::cout;
 
@@ -32,11 +33,11 @@ void TicTacToe::start_game(string first_player)
 
 void TicTacToe::mark_board(int position)
 {
-    if (position < 1 || position > 9 && pegs.size() == 9)
+    if (position < 1 || (position > 9 && pegs.size() == 9))
     {
         throw Error("Position must be 1 to 9.");
     }
-    else if(position < 1 || position > 16 && pegs.size() == 16)
+    else if(position < 1 || (position > 16 && pegs.size() == 16))
     {
         throw Error("Position must be 1 to 16.");
     }
