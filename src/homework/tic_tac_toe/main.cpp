@@ -62,9 +62,9 @@ int main()
 
         } while (!games->game_over());
 
-        manager -> save_game(games);
+		cout << "\nWinner: " << games->get_winner() << "\n";
 
-        cout << "\nWinner: " << games->get_winner()<<"\n";
+        manager -> save_game(games);
 
         cout << "Enter Y to play again: ";
         cin >> cont;
