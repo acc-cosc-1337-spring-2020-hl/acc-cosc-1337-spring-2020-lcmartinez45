@@ -63,6 +63,8 @@ int main()
 
         } while (!games->game_over());
 
+		cout << "\nWinner: " << games->get_winner() << "\n";
+
         manager -> save_game(games);
 
         cout << "\nGame over, do you wish to play again?: Y = Yes or N = No."<<"\n";
