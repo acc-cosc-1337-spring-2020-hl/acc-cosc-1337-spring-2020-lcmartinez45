@@ -28,8 +28,8 @@ std::ostream & operator<<(std::ostream & out, const TicTacToeManager & m)
     out << "\n";
     for (auto &game : m.games)
     {
-        out << game<<"\n";
-        out << "Winner: " << game->get_winner() << "\n\n";
+        out << *game<<"\n";
+        out << "Winner of last game: " << game->get_winner() << "\n";
     }
 
     out << "\nO wins: " << m.o_wins<<"\n";
@@ -37,4 +37,18 @@ std::ostream & operator<<(std::ostream & out, const TicTacToeManager & m)
     out << "Ties: " << m.ties<<"\n";
 
     return out;
+}
+
+TicTacToeManager::TicTacToeManager(TicTacToeData & data)
+{
+    games = data.get_games();
+    for (auto& game : games)
+    {
+        update_winner_count(game->get_winner());
+    }
+}
+
+TicTacToeManager::~TicTacToeManager() // destructor
+{
+    data.save_games(games);
 }

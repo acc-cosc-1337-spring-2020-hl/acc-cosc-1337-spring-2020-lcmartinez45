@@ -11,13 +11,14 @@ using std::unique_ptr; using std::make_unique;
 int main()
 {
     unique_ptr<TicTacToeManager> manager{ new TicTacToeManager() };
+    TicTacToeData data;
     string cont;
 
     do
     {
         unique_ptr<TicTacToe> games;
         int game_type;
-        cout << "\nTictactoe 3 or 4?";
+        cout << "\nTictactoe 3 or 4?\n";
         cin >> game_type;
         
         if (game_type == 3)
@@ -35,7 +36,7 @@ int main()
         {
             try
             {
-                cout << "Enter player: ";
+                cout << "Enter player: 'X' or 'O'\n";
                 cin >> player;
 
                 games->start_game(player);
@@ -64,9 +65,8 @@ int main()
 
         manager -> save_game(games);
 
-        cout << "\nWinner: " << games->get_winner()<<"\n";
+        cout << "\nGame over, do you wish to play again?: Y = Yes or N = No."<<"\n";
 
-        cout << "Enter Y to play again: ";
         cin >> cont;
     
     } while (cont == "Y");

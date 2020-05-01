@@ -65,21 +65,4 @@ bool TicTacToe3::check_diagonal_win()
     return false;
 }
 
-std::ostream & operator<<(std::ostream & out, TicTacToe3 & g)
-{
-    out << "\n";
-    for (int i = 0; i < 9; i += 3) {
-        out << g.pegs[i] << " | " << g.pegs[i + 1] << " | " << g.pegs[i + 2] << "\n ";
-    }
-    return out;
-}
 
-std::istream & operator>>(std::istream & in, TicTacToe3 & g)
-{
-    int board_selection;
-
-    std::cout << "Choose a position between 1 and 9:\n";
-    in >> board_selection;
-    g.mark_board(board_selection);
-    return in;
-}
