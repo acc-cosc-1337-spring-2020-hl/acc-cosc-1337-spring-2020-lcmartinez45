@@ -8,8 +8,8 @@ TEST_CASE("Verify Test Configuration", "verification") {
 
 TEST_CASE("Test class copy with stack variables.")
 {
-    Vector v1(5);
-    Vector v2 = v1;
+    Vector<int> v1(5);
+    Vector<int> v2 = v1;
     
     REQUIRE(v1.Size() == v2.Size());
 
@@ -17,8 +17,8 @@ TEST_CASE("Test class copy with stack variables.")
 
 TEST_CASE("Test class copy with heap variable")
 {
-    Vector v1(3);
-    Vector v2 = v1;
+    Vector<int> v1(3);
+    Vector<int> v2 = v1;
     
     REQUIRE(v1.Size() == v2.Size());
     v1[1] = 5;
@@ -30,8 +30,8 @@ TEST_CASE("Test class copy with heap variable")
 
 TEST_CASE("Vector capacity with reserve function call")
 {
-    Vector v(3);
-    REQUIRE(v.Capacity() == 0);
+    Vector<int> v(3);
+    REQUIRE(v.Capacity() == 3);
     
     v.Reserve(6);
     REQUIRE(v.Capacity() == 6);
@@ -39,7 +39,7 @@ TEST_CASE("Vector capacity with reserve function call")
 
 TEST_CASE("Vector Resize elements value copy and initialized")
 {
-    Vector v(3);
+    Vector<int> v(3);
     v[0] = 1;
     v[1] = 2;
     v[2] = 3;
@@ -51,4 +51,13 @@ TEST_CASE("Vector Resize elements value copy and initialized")
     REQUIRE(v[3] == 0);
     REQUIRE(v[4] == 0);
     REQUIRE(v[5] == 0);
+}
+
+TEST_CASE("Test vector pushback with our default constructor")
+{
+    Vector<double> v;
+    v.Push_Back(5);
+    REQUIRE(v.Capacity() == 8); //go to cpp look at capacity and got through it
+    REQUIRE(v[0] == 5);
+    REQUIRE(v.Size() == 1);
 }
